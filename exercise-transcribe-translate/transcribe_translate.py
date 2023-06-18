@@ -18,11 +18,12 @@ word_ptr = 0
 translated_arr = []
 
 for sentence in sentences:
-    #####
-    # Replace this code and implement the code to translate from Brazilian Portuguese (pt-BR) to a supported language.
-    #####
-    translated_text = ''.join(choice((str.upper, str.lower))(c) for c in sentence)
-
+    translated = translate.translate_text(
+        Text=sentence,
+        SourceLanguageCode='pt-BR',
+        TargetLanguageCode='en-US'
+    )
+    translated_text = translated["TranslatedText"]
     translated_arr.append({ "start_time" : times[word_ptr], "translated" : translated_text})
     word_count = len(re.findall(r'\w+', sentence))
     word_ptr += word_count
